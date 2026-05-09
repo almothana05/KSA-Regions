@@ -13,12 +13,12 @@ $error = '';
 
 // عند إرسال النموذج
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $username = mysqli_real_escape_string($conn, $_POST['username']);
+    $username = pg_escape_string($conn, $_POST['username']);
     $password = md5($_POST['password']); // تشفير كلمة المرور
 
-    $result = mysqli_query($conn, "SELECT * FROM admins WHERE username='$username' AND password='$password'");
+    $result = pg_query($conn, "SELECT * FROM admins WHERE username='$username' AND password='$password'");
 
-    if (mysqli_num_rows($result) == 1) {
+    if (pg_num_rows($result) == 1) {
         // تسجيل دخول ناجح
         $_SESSION['admin'] = $username;
         header("Location: dashboard.php");

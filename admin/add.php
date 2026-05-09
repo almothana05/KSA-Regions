@@ -13,17 +13,17 @@ $error = '';
 
 // عند إرسال النموذج
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $name        = mysqli_real_escape_string($conn, $_POST['name']);
-    $description = mysqli_real_escape_string($conn, $_POST['description']);
-    $category    = mysqli_real_escape_string($conn, $_POST['category']);
-    $image       = mysqli_real_escape_string($conn, $_POST['image']);
-    $landmarks   = mysqli_real_escape_string($conn, $_POST['landmarks']);
+    $name        = pg_escape_string($conn,$_POST['name']);
+    $description = pg_escape_string($conn,$_POST['description']);
+    $category    = pg_escape_string($conn,$_POST['category']);
+    $image       = pg_escape_string($conn,$_POST['image']);
+    $landmarks   = pg_escape_string($conn,$_POST['landmarks']);
 
     if ($name == '' || $description == '' || $category == '') {
         $error = 'يرجى تعبئة جميع الحقول المطلوبة.';
     } else {
-        mysqli_query($conn, "INSERT INTO regions (name, description, category, image, landmarks)
-                             VALUES ('$name', '$description', '$category', '$image', '$landmarks')");
+        pg_query($conn, "INSERT INTO regions (name, description, category, image, landmarks)
+                         VALUES ('$name', '$description', '$category', '$image', '$landmarks')");
         header("Location: dashboard.php?msg=added");
         exit();
     }

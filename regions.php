@@ -34,8 +34,8 @@
     <!-- بطاقات المناطق - تأتي من قاعدة البيانات -->
     <div class="cards-grid">
         <?php
-        $result = mysqli_query($conn, "SELECT * FROM regions ORDER BY id");
-        while ($row = mysqli_fetch_assoc($result)) {
+        $result = pg_query($conn, "SELECT * FROM regions ORDER BY id");
+        while ($row = pg_fetch_assoc($result)) {
             echo '<div class="region-card" data-category="' . $row['category'] . '" onclick="window.location=\'details.php?id=' . $row['id'] . '\'">';
             echo '  <img src="' . $row['image'] . '" alt="' . $row['name'] . '">';
             echo '  <div class="card-info">';

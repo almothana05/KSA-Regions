@@ -1,16 +1,8 @@
 <?php
-// الاتصال بقاعدة البيانات
-$host = "localhost";
-$user = "root";
-$pass = "";
-$db   = "saudi_website";
-
-$conn = mysqli_connect($host, $user, $pass, $db);
+// الاتصال بقاعدة البيانات PostgreSQL
+$conn = pg_connect("host=localhost dbname=saudi_website user=almothana05");
 
 if (!$conn) {
-    die("فشل الاتصال بقاعدة البيانات: " . mysqli_connect_error());
+    die("فشل الاتصال بقاعدة البيانات.");
 }
-
-// لدعم اللغة العربية
-mysqli_set_charset($conn, "utf8mb4");
 ?>

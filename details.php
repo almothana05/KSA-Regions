@@ -5,8 +5,8 @@ include 'db.php';
 $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 
 // جلب بيانات المنطقة من قاعدة البيانات
-$result = mysqli_query($conn, "SELECT * FROM regions WHERE id = $id");
-$region = mysqli_fetch_assoc($result);
+$result = pg_query($conn, "SELECT * FROM regions WHERE id = $id");
+$region = pg_fetch_assoc($result);
 
 // إذا لم توجد المنطقة، ارجع لصفحة المناطق
 if (!$region) {
