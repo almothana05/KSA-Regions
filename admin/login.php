@@ -11,12 +11,12 @@ require_once '../db.php';
 $error = '';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $username = pg_escape_string($conn, $_POST['username']);
+    $username = mysqli_real_escape_string($conn, $_POST['username']);
     $password = md5($_POST['password']);
 
-    $result = pg_query($conn, "SELECT * FROM admins WHERE username='$username' AND password='$password'");
+    $result = mysqli_query($conn, "SELECT * FROM admins WHERE username='$username' AND password='$password'");
 
-    if (pg_num_rows($result) == 1) {
+    if (mysqli_num_rows($result) == 1) {
         $_SESSION['admin'] = $username;
         header("Location: dashboard.php");
         exit();

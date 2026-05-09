@@ -3,13 +3,15 @@
 -- كيفية الاستخدام: افتح phpMyAdmin ثم استورد هذا الملف
 -- =====================================================
 
-CREATE DATABASE IF NOT EXISTS saudi_website
+CREATE DATABASE IF NOT EXISTS if0_41047520_saudi_website
     CHARACTER SET utf8mb4
     COLLATE utf8mb4_unicode_ci;
 
-USE saudi_website;
+USE if0_41047520_saudi_website;
 
--- جدول المناطق
+SET NAMES utf8mb4;
+SET CHARACTER SET utf8mb4;
+
 CREATE TABLE IF NOT EXISTS regions (
     id          INT AUTO_INCREMENT PRIMARY KEY,
     name        VARCHAR(100) NOT NULL,
@@ -17,14 +19,13 @@ CREATE TABLE IF NOT EXISTS regions (
     category    VARCHAR(50)  NOT NULL,
     image       VARCHAR(500),
     landmarks   TEXT
-);
+) DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- جدول المشرفين
 CREATE TABLE IF NOT EXISTS admins (
     id       INT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(50)  NOT NULL,
     password VARCHAR(255) NOT NULL
-);
+) DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- حساب المشرف الافتراضي
 -- اسم المستخدم: admin  |  كلمة المرور: admin123
@@ -88,4 +89,46 @@ INSERT INTO regions (name, description, category, image, landmarks) VALUES
     'شرق',
     'https://placehold.co/600x400/1a5276/ffffff?text=Eastern',
     'كورنيش الدمام، أرامكو السعودية، قلعة الدمام، جزيرة تاروت'
+),
+(
+    'جازان',
+    'جازان منطقة ساحلية تقع في أقصى جنوب غرب المملكة العربية السعودية على ساحل البحر الأحمر. تتميز بتنوعها البيئي الفريد وجزرها الخلابة وأسواقها الشعبية العريقة.',
+    'جنوب',
+    'https://placehold.co/600x400/0e6655/ffffff?text=Jazan',
+    'جزر فرسان، سوق جازان، قلعة الدوسرية، ميناء جازان'
+),
+(
+    'الباحة',
+    'منطقة الباحة جبلية خضراء تقع بين مكة المكرمة وعسير. تشتهر بغاباتها الكثيفة وشلالاتها ومصايفها الجميلة التي تجذب الزوار على مدار العام.',
+    'جنوب',
+    'https://placehold.co/600x400/1d8348/ffffff?text=Baha',
+    'غابة رغدان، شلال الباحة، قرية ذي عين، متحف الباحة'
+),
+(
+    'الطائف',
+    'الطائف مدينة جبلية تقع على ارتفاع 1800 متر فوق سطح البحر. تُعرف بعطورها الفواحة وورودها الشهيرة ومناخها المعتدل الذي يجعلها مقصداً سياحياً مميزاً.',
+    'غرب',
+    'https://placehold.co/600x400/8e44ad/ffffff?text=Taif',
+    'حديقة الورود، شبرا، سوق عكاظ، متحف الطائف'
+),
+(
+    'نجران',
+    'نجران منطقة تاريخية تقع في أقصى جنوب المملكة على الحدود مع اليمن. تحتضن حضارات قديمة وتشتهر بقلعة الأخدود الأثرية وواحاتها الخضراء.',
+    'جنوب',
+    'https://placehold.co/600x400/c0392b/ffffff?text=Najran',
+    'قلعة الأخدود، متحف نجران، واحة نجران، مسجد الجامع'
+),
+(
+    'ينبع',
+    'ينبع مدينة ساحلية تقع على البحر الأحمر شمال جدة. تجمع بين التاريخ العريق والصناعة الحديثة وتشتهر بشعابها المرجانية وأسواقها التقليدية.',
+    'غرب',
+    'https://placehold.co/600x400/2980b9/ffffff?text=Yanbu',
+    'كورنيش ينبع، الشعاب المرجانية، ينبع القديمة، ميناء ينبع'
+),
+(
+    'عنيزة',
+    'عنيزة مدينة تاريخية تقع في قلب منطقة القصيم وسط المملكة. تُعدّ من أعرق المدن السعودية وتشتهر بأسواقها التقليدية ومزارع النخيل والبساتين.',
+    'وسط',
+    'https://placehold.co/600x400/d35400/ffffff?text=Unaizah',
+    'سوق عنيزة القديم، بساتين النخيل، متحف عنيزة، الجامع الكبير'
 );

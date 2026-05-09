@@ -10,8 +10,8 @@ require_once '../db.php';
 
 $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 
-$result = pg_query($conn, "SELECT * FROM regions WHERE id=$id");
-$region = pg_fetch_assoc($result);
+$result = mysqli_query($conn, "SELECT * FROM regions WHERE id=$id");
+$region = mysqli_fetch_assoc($result);
 
 if (!$region) {
     header("Location: dashboard.php");
@@ -22,16 +22,16 @@ $error = '';
 
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $name        = pg_escape_string($conn,$_POST['name']);
-    $description = pg_escape_string($conn,$_POST['description']);
-    $category    = pg_escape_string($conn,$_POST['category']);
-    $image       = pg_escape_string($conn,$_POST['image']);
-    $landmarks   = pg_escape_string($conn,$_POST['landmarks']);
+    $name        = mysqli_real_escape_string($conn,$_POST['name']);
+    $description = mysqli_real_escape_string($conn,$_POST['description']);
+    $category    = mysqli_real_escape_string($conn,$_POST['category']);
+    $image       = mysqli_real_escape_string($conn,$_POST['image']);
+    $landmarks   = mysqli_real_escape_string($conn,$_POST['landmarks']);
 
     if ($name == '' || $description == '' || $category == '') {
         $error = 'يرجى تعبئة جميع الحقول المطلوبة.';
     } else {
-        pg_query($conn, "UPDATE regions
+        mysqli_query($conn, "UPDATE regions
                          SET name='$name', description='$description', category='$category',
                              image='$image', landmarks='$landmarks'
                          WHERE id=$id");

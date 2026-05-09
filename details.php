@@ -4,8 +4,8 @@ require_once 'db.php';
 
 $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 
-$result = pg_query($conn, "SELECT * FROM regions WHERE id = $id");
-$region = pg_fetch_assoc($result);
+$result = mysqli_query($conn, "SELECT * FROM regions WHERE id = $id");
+$region = mysqli_fetch_assoc($result);
 
 
 if (!$region) {

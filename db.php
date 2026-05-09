@@ -1,13 +1,14 @@
 <?php
-// الاتصال بقاعدة البيانات PostgreSQL
-$host = "localhost";
-$user = "almothana05";
-$pass = "";
+$host = "sql208.infinityfree.com";
+$user = "if0_41047520";
+$pass = "6II7KywUJwBy";
 $db   = "saudi_website";
 
-$conn = pg_connect("host=$host dbname=$db user=$user password=$pass");
+$conn = mysqli_connect($host, $user, $pass, $db);
 
 if (!$conn) {
     die("Db connection failed");
 }
+
+mysqli_set_charset($conn, "utf8mb4");
 ?>

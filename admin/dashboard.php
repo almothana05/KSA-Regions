@@ -11,12 +11,12 @@ require_once '../db.php';
 
 if (isset($_GET['delete'])) {
     $id = (int)$_GET['delete'];
-    pg_query($conn, "DELETE FROM regions WHERE id=$id");
+    mysqli_query($conn, "DELETE FROM regions WHERE id=$id");
     header("Location: dashboard.php?msg=deleted");
     exit();
 }
 
-$result = pg_query($conn, "SELECT * FROM regions ORDER BY id");
+$result = mysqli_query($conn, "SELECT * FROM regions ORDER BY id");
 ?>
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
@@ -63,7 +63,7 @@ $result = pg_query($conn, "SELECT * FROM regions ORDER BY id");
             </tr>
         </thead>
         <tbody>
-            <?php while ($row = pg_fetch_assoc($result)): ?>
+            <?php while ($row = mysqli_fetch_assoc($result)): ?>
             <tr>
                 <td><?php echo $row['id']; ?></td>
                 <td><?php echo $row['name']; ?></td>
