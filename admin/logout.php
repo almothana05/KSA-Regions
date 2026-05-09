@@ -1,6 +1,6 @@
 <?php
 session_start();
-session_destroy(); // حذف جلسة المشرف
+session_destroy();
 header("Location: login.php");
 exit();
 ?>

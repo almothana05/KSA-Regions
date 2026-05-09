@@ -1,17 +1,17 @@
 -- =====================================================
--- اكتشف السعودية - إعداد قاعدة البيانات (PostgreSQL)
--- كيفية الاستخدام:
---   psql -U almothana05 -f setup.sql
+-- اكتشف السعودية - إعداد قاعدة البيانات
+-- كيفية الاستخدام: افتح phpMyAdmin ثم استورد هذا الملف
 -- =====================================================
 
--- إنشاء قاعدة البيانات (شغّل هذا السطر منفصلاً إذا لزم)
--- CREATE DATABASE saudi_website;
+CREATE DATABASE IF NOT EXISTS saudi_website
+    CHARACTER SET utf8mb4
+    COLLATE utf8mb4_unicode_ci;
 
-\c saudi_website
+USE saudi_website;
 
 -- جدول المناطق
 CREATE TABLE IF NOT EXISTS regions (
-    id          SERIAL PRIMARY KEY,
+    id          INT AUTO_INCREMENT PRIMARY KEY,
     name        VARCHAR(100) NOT NULL,
     description TEXT         NOT NULL,
     category    VARCHAR(50)  NOT NULL,
@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS regions (
 
 -- جدول المشرفين
 CREATE TABLE IF NOT EXISTS admins (
-    id       SERIAL PRIMARY KEY,
+    id       INT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(50)  NOT NULL,
     password VARCHAR(255) NOT NULL
 );
@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS admins (
 -- حساب المشرف الافتراضي
 -- اسم المستخدم: admin  |  كلمة المرور: admin123
 INSERT INTO admins (username, password)
-VALUES ('admin', md5('admin123'));
+VALUES ('admin', MD5('admin123'));
 
 -- بيانات تجريبية للمناطق
 INSERT INTO regions (name, description, category, image, landmarks) VALUES

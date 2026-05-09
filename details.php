@@ -1,14 +1,13 @@
 <?php
-include 'db.php';
+require_once 'db.php';
 
-// الحصول على رقم المنطقة من الرابط
+
 $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 
-// جلب بيانات المنطقة من قاعدة البيانات
 $result = pg_query($conn, "SELECT * FROM regions WHERE id = $id");
 $region = pg_fetch_assoc($result);
 
-// إذا لم توجد المنطقة، ارجع لصفحة المناطق
+
 if (!$region) {
     header("Location: regions.php");
     exit();
@@ -35,7 +34,24 @@ if (!$region) {
 
     <div class="details-container">
 
-        <img src="<?php echo $region['image']; ?>" alt="<?php echo $region['name']; ?>">
+        <?php
+        $images = array_map('trim', explode(',', $region['image']));
+        $hasMultiple = count($images) > 1;
+        ?>
+        <div class="slideshow">
+            <?php foreach ($images as $i => $img): ?>
+                <img src="<?php echo $img; ?>" alt="<?php echo $region['name']; ?>" class="slide<?php echo $i === 0 ? ' active' : ''; ?>">
+            <?php endforeach; ?>
+            <?php if ($hasMultiple): ?>
+                <button class="slide-btn slide-prev" onclick="changeSlide(-1)">&#10094;</button>
+                <button class="slide-btn slide-next" onclick="changeSlide(1)">&#10095;</button>
+                <div class="slide-dots">
+                    <?php for ($i = 0; $i < count($images); $i++): ?>
+                        <span class="dot<?php echo $i === 0 ? ' active' : ''; ?>" onclick="goToSlide(<?php echo $i; ?>)"></span>
+                    <?php endfor; ?>
+                </div>
+            <?php endif; ?>
+        </div>
 
         <h1><?php echo $region['name']; ?></h1>
         <span class="badge">📍 <?php echo $region['category']; ?></span>
@@ -59,7 +75,7 @@ if (!$region) {
 </main>
 
 <footer>
-    <p>اكتشف السعودية &copy; 2025 - جميع الحقوق محفوظة</p>
+    <p>اكتشف السعودية &copy; 2025 - المثنى الزهراني ومنصور الأحمري وأنس الشمراني</p>
 </footer>
 
 <script src="scripts.js"></script>

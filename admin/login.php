@@ -1,25 +1,22 @@
 <?php
 session_start();
 
-// إذا كان المشرف مسجلاً، انتقل مباشرة للوحة التحكم
 if (isset($_SESSION['admin'])) {
     header("Location: dashboard.php");
     exit();
 }
 
-include '../db.php';
+require_once '../db.php';
 
 $error = '';
 
-// عند إرسال النموذج
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = pg_escape_string($conn, $_POST['username']);
-    $password = md5($_POST['password']); // تشفير كلمة المرور
+    $password = md5($_POST['password']);
 
     $result = pg_query($conn, "SELECT * FROM admins WHERE username='$username' AND password='$password'");
 
     if (pg_num_rows($result) == 1) {
-        // تسجيل دخول ناجح
         $_SESSION['admin'] = $username;
         header("Location: dashboard.php");
         exit();
@@ -57,18 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </form>
 </div>
 
-<script>
-function validateLogin() {
-    var username = document.getElementById('username').value;
-    var password = document.getElementById('password').value;
-
-    if (username == '' || password == '') {
-        alert('يرجى تعبئة جميع الحقول.');
-        return false;
-    }
-    return true;
-}
-</script>
+<script src="scripts.js"></script>
 
 </body>
 </html>

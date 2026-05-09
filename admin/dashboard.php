@@ -1,15 +1,14 @@
 <?php
 session_start();
 
-// حماية الصفحة - فقط المشرف يستطيع الدخول
 if (!isset($_SESSION['admin'])) {
     header("Location: login.php");
     exit();
 }
 
-include '../db.php';
+require_once '../db.php';
 
-// حذف منطقة إذا طُلب ذلك
+
 if (isset($_GET['delete'])) {
     $id = (int)$_GET['delete'];
     pg_query($conn, "DELETE FROM regions WHERE id=$id");
@@ -17,7 +16,6 @@ if (isset($_GET['delete'])) {
     exit();
 }
 
-// جلب كل المناطق من قاعدة البيانات
 $result = pg_query($conn, "SELECT * FROM regions ORDER BY id");
 ?>
 <!DOCTYPE html>
@@ -32,7 +30,8 @@ $result = pg_query($conn, "SELECT * FROM regions ORDER BY id");
 <nav>
     <a href="dashboard.php">🏠 لوحة التحكم</a>
     <a href="../index.php" target="_blank">🌐 الموقع</a>
-    <a href="logout.php" class="btn btn-logout" style="margin-right:auto;">تسجيل الخروج</a>
+    <button onclick="toggleDark(this)" id="darkBtn">🌙 الوضع الليلي</button>
+    <a href="logout.php" class="btn btn-logout">تسجيل الخروج</a>
 </nav>
 
 <div class="admin-container">
@@ -41,7 +40,7 @@ $result = pg_query($conn, "SELECT * FROM regions ORDER BY id");
     <p>مرحباً، <strong><?php echo $_SESSION['admin']; ?></strong></p>
     <br>
 
-    <!-- رسائل النجاح -->
+    
     <?php if (isset($_GET['msg'])): ?>
         <?php if ($_GET['msg'] == 'added'): ?>
             <div class="msg-success">✅ تم إضافة المنطقة بنجاح.</div>

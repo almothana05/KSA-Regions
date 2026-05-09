@@ -30,6 +30,34 @@ window.onload = function() {
 }
 
 // =============================================
+// معرض الصور - Image Slideshow
+// =============================================
+
+var currentSlide = 0;
+
+function changeSlide(dir) {
+    var slides = document.querySelectorAll('.slide');
+    if (!slides.length) return;
+    slides[currentSlide].classList.remove('active');
+    var dots = document.querySelectorAll('.dot');
+    if (dots[currentSlide]) dots[currentSlide].classList.remove('active');
+    currentSlide = (currentSlide + dir + slides.length) % slides.length;
+    slides[currentSlide].classList.add('active');
+    if (dots[currentSlide]) dots[currentSlide].classList.add('active');
+}
+
+function goToSlide(index) {
+    var slides = document.querySelectorAll('.slide');
+    if (!slides.length) return;
+    slides[currentSlide].classList.remove('active');
+    var dots = document.querySelectorAll('.dot');
+    if (dots[currentSlide]) dots[currentSlide].classList.remove('active');
+    currentSlide = index;
+    slides[currentSlide].classList.add('active');
+    if (dots[currentSlide]) dots[currentSlide].classList.add('active');
+}
+
+// =============================================
 // فلترة المناطق - Region Filtering
 // =============================================
 

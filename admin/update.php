@@ -1,22 +1,18 @@
 <?php
 session_start();
 
-// حماية الصفحة
 if (!isset($_SESSION['admin'])) {
     header("Location: login.php");
     exit();
 }
 
-include '../db.php';
+require_once '../db.php';
 
-// الحصول على رقم المنطقة المراد تعديلها
 $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 
-// جلب بيانات المنطقة الحالية
 $result = pg_query($conn, "SELECT * FROM regions WHERE id=$id");
 $region = pg_fetch_assoc($result);
 
-// إذا لم توجد، ارجع للوحة التحكم
 if (!$region) {
     header("Location: dashboard.php");
     exit();
@@ -24,7 +20,7 @@ if (!$region) {
 
 $error = '';
 
-// عند إرسال النموذج
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $name        = pg_escape_string($conn,$_POST['name']);
     $description = pg_escape_string($conn,$_POST['description']);
@@ -56,7 +52,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <nav>
     <a href="dashboard.php">🏠 لوحة التحكم</a>
     <a href="../index.php" target="_blank">🌐 الموقع</a>
-    <a href="logout.php" class="btn btn-logout" style="margin-right:auto;">تسجيل الخروج</a>
+    <button onclick="toggleDark(this)" id="darkBtn">🌙 الوضع الليلي</button>
+    <a href="logout.php" class="btn btn-logout">تسجيل الخروج</a>
 </nav>
 
 <div class="admin-container">
@@ -96,8 +93,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div>
 
             <div class="form-group">
-                <label>رابط الصورة</label>
-                <input type="text" name="image" value="<?php echo $region['image']; ?>">
+                <label>مسارات الصور (مفصولة بفاصلة ,)</label>
+                <textarea name="image" style="height:80px"><?php echo $region['image']; ?></textarea>
             </div>
 
             <div class="form-group">
@@ -112,19 +109,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 </div>
 
-<script>
-function validateForm() {
-    var name        = document.getElementById('fname').value;
-    var category    = document.getElementById('fcategory').value;
-    var description = document.getElementById('fdescription').value;
-
-    if (name == '' || category == '' || description == '') {
-        alert('يرجى تعبئة جميع الحقول المطلوبة.');
-        return false;
-    }
-    return true;
-}
-</script>
+<script src="scripts.js"></script>
 
 </body>
 </html>

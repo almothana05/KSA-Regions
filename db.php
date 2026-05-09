@@ -1,8 +1,13 @@
 <?php
 // الاتصال بقاعدة البيانات PostgreSQL
-$conn = pg_connect("host=localhost dbname=saudi_website user=almothana05");
+$host = "localhost";
+$user = "almothana05";
+$pass = "";
+$db   = "saudi_website";
+
+$conn = pg_connect("host=$host dbname=$db user=$user password=$pass");
 
 if (!$conn) {
-    die("فشل الاتصال بقاعدة البيانات.");
+    die("Db connection failed");
 }
 ?>
