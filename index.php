@@ -13,6 +13,7 @@
     <a href="regions.php">🗺️ المناطق</a>
     <a href="admin/login.php">🔐 المشرف</a>
     <button onclick="toggleDark(this)" id="darkBtn">🌙 الوضع الليلي</button>
+    <a href="secret.php" style="color:#006c35;">•</a>
 </nav>
 
 <header class="hero">
