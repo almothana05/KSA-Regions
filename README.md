@@ -52,7 +52,7 @@
 
 The landing page introduces the website with a hero section and a brief description of Saudi Arabia. The navigation includes links to the regions gallery and the admin login.
 
-![Home Page](images/index.png)
+![Home Page](Report/images/index.png)
 
 ---
 
@@ -60,11 +60,11 @@ The landing page introduces the website with a hero section and a brief descript
 
 Displays all regions as a card grid. Users can filter by geographic category (وسط، غرب، شمال، جنوب، شرق) using the filter buttons. Each card shows the region's thumbnail and category badge. Clicking a card navigates to the details page.
 
-![Regions Gallery](images/regions.png)
+![Regions Gallery](Report/images/regions.png)
 
 **Filtered view (جنوب):**
 
-![Regions Filtered](images/regions_south.png)
+![Regions Filtered](Report/images/regions_south.png)
 
 ---
 
@@ -72,7 +72,7 @@ Displays all regions as a card grid. Users can filter by geographic category (و
 
 Shows the full details of a selected region: a multi-image slideshow with arrow buttons and dot indicators, the region category badge, a full description, and a list of key landmarks.
 
-![Region Details](images/details.png)
+![Region Details](Report/images/details.png)
 
 ---
 
@@ -84,7 +84,7 @@ All admin pages are protected by a session check that redirects unauthenticated 
 
 Simple login form with username and password fields. Credentials are validated against the `admins` table using an MD5-hashed password comparison.
 
-![Admin Login](images/admin/login.png)
+![Admin Login](Report/images/admin/login.png)
 
 ---
 
@@ -92,7 +92,7 @@ Simple login form with username and password fields. Credentials are validated a
 
 Lists all regions in a table with their ID, name, and category. Each row has Edit and Delete action buttons. Deletion is confirmed via a JavaScript dialog. Success messages are shown for add, edit, and delete operations.
 
-![Dashboard](images/admin/dashboard.png)
+![Dashboard](Report/images/admin/dashboard.png)
 
 ---
 
@@ -100,7 +100,7 @@ Lists all regions in a table with their ID, name, and category. Each row has Edi
 
 Form for creating a new region. Fields include name, category (dropdown), description, image paths (comma-separated), and landmarks (comma-separated with Arabic comma ،). All required fields are validated before submission.
 
-![Add Region](images/admin/add.png)
+![Add Region](Report/images/admin/add.png)
 
 ---
 
@@ -108,7 +108,7 @@ Form for creating a new region. Fields include name, category (dropdown), descri
 
 Pre-filled form for updating an existing region. Pulls current data from the database and allows the admin to modify any field.
 
-![Edit Region](images/admin/update.png)
+![Edit Region](Report/images/admin/update.png)
 
 ---
 
