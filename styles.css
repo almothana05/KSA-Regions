@@ -158,7 +158,7 @@ section h2 {
     color: white;
 }
 
-/* ── معرض الصور ── */
+/* Image slideshow */
 .slideshow {
     position: relative;
     width: 100%;
@@ -224,7 +224,7 @@ section h2 {
     background: white;
 }
 
-/* ── صفحة التفاصيل ── */
+/* Details page */
 .details-container {
     background-color: white;
     border-radius: 10px;
@@ -355,7 +355,7 @@ body.dark footer {
     background-color: #003d1e;
 }
 
-/* adming controllers*/
+/* Admin pages */
 
 .login-page {
     background-color: #f0f4f0;

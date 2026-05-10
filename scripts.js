@@ -1,16 +1,12 @@
-// =============================================
-// الوضع الليلي - Night Mode
-// =============================================
+// Dark mode
 
 function toggleDark(btn) {
     document.body.classList.toggle('dark');
 
     var isDark = document.body.classList.contains('dark');
 
-    // حفظ الاختيار في المتصفح
     localStorage.setItem('darkMode', isDark);
 
-    // تغيير نص الزر
     if (isDark) {
         btn.textContent = '☀️ الوضع النهاري';
     } else {
@@ -18,7 +14,7 @@ function toggleDark(btn) {
     }
 }
 
-// تطبيق الوضع المحفوظ عند تحميل الصفحة
+// Use the saved dark mode setting when the page opens.
 window.onload = function() {
     if (localStorage.getItem('darkMode') === 'true') {
         document.body.classList.add('dark');
@@ -29,9 +25,7 @@ window.onload = function() {
     }
 }
 
-// =============================================
-// معرض الصور - Image Slideshow
-// =============================================
+// Image slideshow
 
 var currentSlide = 0;
 
@@ -57,12 +51,9 @@ function goToSlide(index) {
     if (dots[currentSlide]) dots[currentSlide].classList.add('active');
 }
 
-// =============================================
-// فلترة المناطق - Region Filtering
-// =============================================
+// Region filtering
 
 function filterRegions(category, btn) {
-    // إظهار أو إخفاء البطاقات
     var cards = document.querySelectorAll('.region-card');
     cards.forEach(function(card) {
         if (category === 'الكل' || card.getAttribute('data-category') === category) {
@@ -72,7 +63,6 @@ function filterRegions(category, btn) {
         }
     });
 
-    // تحديث الزر النشط
     var buttons = document.querySelectorAll('.filter-btn');
     buttons.forEach(function(b) {
         b.classList.remove('active');
@@ -80,9 +70,7 @@ function filterRegions(category, btn) {
     btn.classList.add('active');
 }
 
-// =============================================
-// تأكيد الحذف - Delete Confirmation
-// =============================================
+// Delete confirmation
 
 function confirmDelete() {
     return confirm('هل أنت متأكد من حذف هذا العنصر؟');

@@ -1,4 +1,4 @@
-// الوضع الليلي
+// Dark mode
 function toggleDark(btn) {
     document.body.classList.toggle('dark');
     var isDark = document.body.classList.contains('dark');

@@ -1,5 +1,5 @@
 <?php
-// الاتصال بقاعدة البيانات PostgreSQL
+// Connect to the PostgreSQL database.
 $host = "localhost";
 $user = "almothana05";
 $pass = "";

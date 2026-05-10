@@ -62,7 +62,7 @@ if (!$region) {
         <h2>أبرز المعالم</h2>
         <ul class="landmarks-list">
             <?php
-            // تقسيم المعالم على الفاصلة العربية
+            // Landmarks are saved with Arabic commas.
             $landmarks = explode('،', $region['landmarks']);
             foreach ($landmarks as $lm) {
                 echo '<li>' . trim($lm) . '</li>';

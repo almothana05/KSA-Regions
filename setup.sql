@@ -1,6 +1,6 @@
 -- =====================================================
--- اكتشف السعودية - إعداد قاعدة البيانات
--- كيفية الاستخدام: افتح phpMyAdmin ثم استورد هذا الملف
+-- Discover Saudi Arabia database setup
+-- Import this file in phpMyAdmin.
 -- =====================================================
 
 CREATE DATABASE IF NOT EXISTS saudi_website
@@ -9,7 +9,7 @@ CREATE DATABASE IF NOT EXISTS saudi_website
 
 USE saudi_website;
 
--- جدول المناطق
+-- Regions table
 CREATE TABLE IF NOT EXISTS regions (
     id          INT AUTO_INCREMENT PRIMARY KEY,
     name        VARCHAR(100) NOT NULL,
@@ -19,19 +19,19 @@ CREATE TABLE IF NOT EXISTS regions (
     landmarks   TEXT
 );
 
--- جدول المشرفين
+-- Admin users table
 CREATE TABLE IF NOT EXISTS admins (
     id       INT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(50)  NOT NULL,
     password VARCHAR(255) NOT NULL
 );
 
--- حساب المشرف الافتراضي
--- اسم المستخدم: admin  |  كلمة المرور: admin123
+-- Default admin account
+-- Username: admin | Password: admin123
 INSERT INTO admins (username, password)
 VALUES ('admin', MD5('admin123'));
 
--- بيانات تجريبية للمناطق
+-- Sample region data
 INSERT INTO regions (name, description, category, image, landmarks) VALUES
 (
     'الرياض',
