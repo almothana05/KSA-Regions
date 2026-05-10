@@ -110,16 +110,6 @@ Pre-filled form for updating an existing region. Pulls current data from the dat
 
 ![Edit Region](Report/images/admin/update.png)
 
----
-
-## Key Features
-
-- **RTL Layout** — Full right-to-left Arabic interface using CSS `direction: rtl`
-- **Dark Mode** — Toggle persisted in `localStorage`, applied across all pages
-- **Image Slideshow** — Multiple images per region with arrow navigation and dot indicators
-- **Category Filter** — JavaScript-based client-side filtering with no page reload
-- **Admin Panel** — Full CRUD operations protected by PHP sessions
-- **Input Sanitization** — All user inputs escaped with `pg_escape_string()` before database queries
 
 ---
 
